@@ -1,5 +1,6 @@
 import sqlite3
 
+#Esta classe terá apenas os dados de um livro
 class Livro:
     def __init__(self, id, titulo, autor, genero, ano):
         self.id = id
@@ -8,6 +9,7 @@ class Livro:
         self.genero = genero
         self.ano = ano
 
+#Esta classe poderá interagir com a biblioteca. Terá ações como adicionar um livro, visualizar os livros da bibioteca, atualizar um livro ou retirar um livro do acervo da biblioteca
 class Biblioteca:
     def __init__(self, db_file):
         self.conexao = sqlite3.connect(db_file)
