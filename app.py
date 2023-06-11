@@ -1,18 +1,22 @@
 import streamlit as st
 from biblioteca import Livro, Biblioteca
 
+#nesta função, estaremos exibindo na tela do usuário, os campos para que ele possa adicionar um livro a biblioteca
 def adicionar_livro(biblioteca):
     st.subheader("Adicionar Livro")
-    id = st.number_input("ID", format='%.0f')
+    id = st.number_input("ID", step=1, min_value=0)
     titulo = st.text_input("Título")
     autor = st.text_input("Autor")
     genero = st.text_input("Gênero")
-    ano = st.number_input("Ano", format='%.0f')
+    ano = st.number_input("Ano", step=1, min_value=0)
 
     if st.button("Salvar"):
-        livro = Livro(id, titulo, autor, genero, ano)
-        biblioteca.adicionar_livro(livro)
-        st.success("Livro adicionado com sucesso.")
+        if not id or not titulo or not autor or not genero or not ano:
+            st.error("Preencha todos os campos")
+        else:
+            livro = Livro(id, titulo, autor, genero, ano)
+            biblioteca.adicionar_livro(livro)
+            st.success("Livro adicionado com sucesso.")
 
 def visualizar_livros(biblioteca):
     st.subheader("Livros")
